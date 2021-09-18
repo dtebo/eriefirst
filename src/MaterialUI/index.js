@@ -1,7 +1,13 @@
 import {
-    Button
+    Button,
+    Card,
+    CardContent,
+    Typography
 } from '@material-ui/core';
 
 export {
-    Button
+    Button,
+    Card,
+    CardContent,
+    Typography
 };
