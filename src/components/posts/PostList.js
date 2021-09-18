@@ -19,7 +19,7 @@ const PostList = (props) => {
 
     return (
         <div className='post-list'>
-            {posts.map(post => {
+            {posts && posts.map(post => {
                 return(<PostView
                             key={post.id}
                             post={post} 
