@@ -9,6 +9,7 @@ const PostList = (props) => {
     useEffect(() => {
       axios.get("http://eriefirst.org/wp-json/wp/v2/posts")
         .then(resp => {
+          console.log(resp.data);
           setPosts(resp.data);
         })
         .catch(err => {
@@ -19,7 +20,10 @@ const PostList = (props) => {
     return (
         <div className='post-list'>
             {posts.map(post => {
-                return(<PostView post={post} />);
+                return(<PostView
+                            key={post.id}
+                            post={post} 
+                       />);
             })}
         </div>
     );
