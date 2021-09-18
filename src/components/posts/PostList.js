@@ -1,7 +1,10 @@
 import {useState, useEffect} from 'react';
 import axios from 'axios';
+import {Link} from 'react-router-dom';
 
-import PostView from './PostView';
+import * as MUI from '../../MaterialUI';
+
+import './posts.css';
 
 const PostList = (props) => {
     const [posts, setPosts] = useState([]);
@@ -17,13 +20,30 @@ const PostList = (props) => {
         });
     }, []);
 
+    const createMarkup = (html) => {
+        return {__html: html};
+    }
+
     return (
         <div className='post-list'>
             {posts.map(post => {
-                return(<PostView
+                return(<Link 
+                            to={`${post.slug}`}
                             key={post.id}
-                            post={post} 
-                       />);
+                        >
+                            <MUI.Card className='card'>
+                                    <MUI.CardContent>
+                                        <MUI.Typography>
+                                            {post.title.rendered}
+                                        </MUI.Typography>
+                                    </MUI.CardContent>
+                                    <MUI.CardContent>
+                                        <div
+                                            dangerouslySetInnerHTML={createMarkup(post.excerpt.rendered)}
+                                        />
+                                    </MUI.CardContent>
+                                </MUI.Card>
+                        </Link>);
             })}
         </div>
     );
